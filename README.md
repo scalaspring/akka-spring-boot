@@ -22,23 +22,23 @@ libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.1.0"
 Create a configuration class that extends the ActorSystemConfiguration trait and imports the AkkaAutoConfiguration
 
 ````scala
-  @Configuration
-  @ComponentScan
-  @Import(Array(classOf[AkkaAutoConfiguration]))
-  class Configuration extends ActorSystemConfiguration {
+@Configuration
+@ComponentScan
+@Import(Array(classOf[AkkaAutoConfiguration]))
+class Configuration extends ActorSystemConfiguration {
 
-    // Note: the EchoActor class is part of Akka test kit
-    @Bean
-    def echoActor = actorOf[EchoActor]
+  // Note: the EchoActor class is part of Akka test kit
+  @Bean
+  def echoActor = actorOf[EchoActor]
 
-  }
+}
 ````
 
 ### Testing Your Configuration
 
 Create a ScalaTest-based test that uses the configuration
 
-````
+````scala
 @ContextConfiguration(
   loader = classOf[SpringApplicationContextLoader],
   classes = Array(classOf[AkkaAutoConfigurationSpec.Configuration])
