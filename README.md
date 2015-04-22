@@ -5,16 +5,16 @@ Convention over configuration and sensible automatic defaults get your project r
 
 #### Key Benefits
 1. Full Spring dependency injection support
-** Autowire any dependency into your actors and leverage the full Spring ecosystem
-** Use existing Spring components to enable gradual migration or to reuse perfectly suitable existing enterprise components
-** Avoid the anti-pattern of using Scala implicits to implement dependency injection. Scala implicits are great, but they're often abused, IMHO, to pass dependencies all the way down the call stack and throughout an application resulting in tight coupling and less maintainable code.
+   * Autowire any dependency into your actors and leverage the full Spring ecosystem
+   * Use existing Spring components to enable gradual migration or to reuse perfectly suitable existing enterprise components
+   * Avoid the anti-pattern of using Scala implicits to implement dependency injection. Scala implicits are great, but they're often abused, IMHO, to pass dependencies all the way down the call stack and throughout an application resulting in tight coupling and less maintainable code.
 2. Configure Akka via any Spring property source
-** Use your Spring Boot configuration (YAML, properties files, or any property source) to set Akka properties. Any property set via Spring is visible in Akka.
-** Seamless two-way integration of Akka configuration and Spring property sources - any property defined in Akka configuration is accessible via Spring and vice versa.
+   * Use your Spring Boot configuration (YAML, properties files, or any property source) to set Akka properties. Any property set via Spring is visible in Akka.
+   * Seamless two-way integration of Akka configuration and Spring property sources - any property defined in Akka configuration is accessible via Spring and vice versa.
 3. Pre-configured default actor system that's managed for you
-** No need to create and manage an actor system for your actors. A default actor system will be created when your application context starts and terminated when your application context is closed.
+   * No need to create and manage an actor system for your actors. A default actor system will be created when your application context starts and terminated when your application context is closed.
 4. Easy creation of actor beans and actor references
-** Simple, standard annotations and familiar actorOf() methods are all that's required to create actors that integrate with Spring.
+   * Simple, standard annotations and familiar actorOf() methods are all that's required to create actors that integrate with Spring.
 
 #### Getting Started
 
