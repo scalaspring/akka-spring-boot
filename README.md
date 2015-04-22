@@ -24,9 +24,7 @@ Convention over configuration and sensible automatic defaults get your project r
 libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.1.0"
 ````
 
-##### Create an actor
-
-Annotate your actors with `@ActorComponent`, a [Spring meta-annotation](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-meta-annotations). This is simply a more readable way of marking your actors as Spring prototype beans.
+##### Create an Actor and a Spring configuration
 
 ````scala
 @ActorComponent
@@ -35,22 +33,11 @@ class EchoActor extends Actor {
     case message ⇒ sender() ! message
   }
 }
-````
 
-##### Create a Spring Configuration
-
-Create a configuration class that
-
-1. Extends the ActorSystemConfiguration trait
-2. Imports the AkkaAutoConfiguration configuration
-
-Note that the `@ComponentScan` annotation will cause the previously defined actor to get picked up as a bean.
-
-````scala
 @Configuration
 @ComponentScan
 @Import(Array(classOf[AkkaAutoConfiguration]))
-class Configuration extends ActorSystemConfiguration {
+class EchoConfiguration extends ActorSystemConfiguration {
 
   @Bean
   def echoActor = actorOf[EchoActor]
@@ -58,16 +45,25 @@ class Configuration extends ActorSystemConfiguration {
 }
 ````
 
-##### Testing Your Configuration
+###### Notes on the code
+
+* Actors
+  * Annotate your actors with `@ActorComponent`, a [Spring meta-annotation](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-meta-annotations). This is simply a more readable way of marking your actors as Spring prototype beans.
+* Configurations
+  * Extend the ActorSystemConfiguration trait, which includes the helpful actorOf() methods
+  * Import the AkkaAutoConfiguration configuration, which creates and manages the default actor system
+  * Note that the `@ComponentScan` annotation will cause the EchoActor class to get picked up as a bean.
+
+##### Test the Configuration
 
 Create a ScalaTest-based test that uses the configuration (see the [scalatest-spring](https://github.com/scalaspring/scalatest-spring) project)
 
 ````scala
 @ContextConfiguration(
   loader = classOf[SpringApplicationContextLoader],
-  classes = Array(classOf[AkkaAutoConfigurationSpec.Configuration])
+  classes = Array(classOf[EchoConfiguration])
 )
-class AkkaAutoConfigurationSpec extends FlatSpec with TestContextManagement with Matchers with AskSupport with ScalaFutures with StrictLogging {
+class EchoConfigurationSpec extends FlatSpec with TestContextManagement with Matchers with AskSupport with ScalaFutures with StrictLogging {
 
   implicit val timeout: Timeout = (1 seconds)
 
