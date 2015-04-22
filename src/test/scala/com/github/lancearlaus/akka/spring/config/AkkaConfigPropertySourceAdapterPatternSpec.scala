@@ -4,7 +4,7 @@ import java.util.regex.Matcher
 
 import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.prop.TableDrivenPropertyChecks._
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FlatSpec, Matchers}
 
 class AkkaConfigPropertySourceAdapterPatternSpec extends FlatSpec with Matchers with StrictLogging {
 

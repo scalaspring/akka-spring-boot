@@ -32,7 +32,7 @@ lazy val root = (project in file(".")).
     // Test dependencies
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "2.2.4",
-      "com.github.scalaspring" %% "scalatest-spring" % "0.1.1",
+      "com.github.scalaspring" %% "scalatest-spring" % "0.2.0",
       "org.springframework" % "spring-test" % springVersion,
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion
     ).map { _ % "test" },

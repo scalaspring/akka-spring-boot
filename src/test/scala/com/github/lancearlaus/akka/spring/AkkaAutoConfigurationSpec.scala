@@ -4,7 +4,7 @@ import akka.actor.{Actor, ActorRef}
 import akka.pattern.AskSupport
 import akka.testkit.TestActors.EchoActor
 import akka.util.Timeout
-import com.github.lancearlaus.spring.test.TestContextManagement
+import com.github.scalaspring.spring.test.TestContextManagement
 import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{FlatSpec, Matchers}

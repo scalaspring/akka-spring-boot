@@ -2,7 +2,7 @@ package com.github.lancearlaus.akka.spring.config
 
 import java.net.URL
 
-import com.github.lancearlaus.spring.test.TestContextManagement
+import com.github.scalaspring.spring.test.TestContextManagement
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.{FlatSpec, Matchers}
