@@ -40,8 +40,10 @@ class EchoActor extends Actor {
 ##### Create a Spring Configuration
 
 Create a configuration class that
+
 1. Extends the ActorSystemConfiguration trait
 2. Imports the AkkaAutoConfiguration configuration
+
 Note that the `@ComponentScan` annotation will cause the previously defined actor to get picked up as a bean.
 
 ````scala
