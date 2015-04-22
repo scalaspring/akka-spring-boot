@@ -10,7 +10,7 @@ lazy val root = (project in file(".")).
   settings(
     organization        := "com.github.scalaspring",
     name                := "akka-spring-boot",
-    description         := "Integrates Akka and Spring Boot using standard Spring annotations and convention over configuration",
+    description         := "Easy-to-use Scala-friendly integration of Akka with Spring Boot.\nConvention over configuration and sensible automatic defaults get your project running quickly.",
     scalaVersion        := "2.11.6",
     crossScalaVersions  := Seq("2.10.5"),
     javacOptions        := Seq("-source", "1.7", "-target", "1.7"),
