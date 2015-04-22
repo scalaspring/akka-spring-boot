@@ -9,7 +9,7 @@ lazy val root = (project in file(".")).
   settings(net.virtualvoid.sbt.graph.Plugin.graphSettings: _*).
   settings(
     organization        := "com.github.scalaspring",
-    name                := "akka-spring-boot-scala",
+    name                := "akka-spring-boot",
     description         := "Integrates Akka and Spring Boot using standard Spring annotations and convention over configuration",
     scalaVersion        := "2.11.6",
     crossScalaVersions  := Seq("2.10.5"),
@@ -32,7 +32,7 @@ lazy val root = (project in file(".")).
     // Test dependencies
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "2.2.4",
-      "com.github.lancearlaus" %% "scalatest-spring" % "0.1.0",
+      "com.github.scalaspring" %% "scalatest-spring" % "0.1.1",
       "org.springframework" % "spring-test" % springVersion,
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion
     ).map { _ % "test" },
@@ -48,7 +48,7 @@ lazy val root = (project in file(".")).
         Some("releases"  at nexus + "service/local/staging/deploy/maven2")
     },
     pomExtra :=
-      <url>http://github.com/scalaspring/akka-spring-boot-scala</url>
+      <url>http://github.com/scalaspring/akka-spring-boot</url>
       <licenses>
         <license>
           <name>Apache License, Version 2.0</name>
@@ -57,8 +57,8 @@ lazy val root = (project in file(".")).
         </license>
       </licenses>
       <scm>
-        <url>git@github.com:scalaspring/akka-spring-boot-scala.git</url>
-        <connection>scm:git:git@github.com:scalaspring/akka-spring-boot-scala.git</connection>
+        <url>git@github.com:scalaspring/akka-spring-boot.git</url>
+        <connection>scm:git:git@github.com:scalaspring/akka-spring-boot.git</connection>
       </scm>
       <developers>
         <developer>
