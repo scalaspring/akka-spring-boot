@@ -21,7 +21,7 @@ Convention over configuration and sensible automatic defaults get your project r
 ##### build.sbt
 
 ````scala
-libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.1.0"
+libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.1.1"
 ````
 
 ##### Create an Actor and a Spring configuration
