@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring
+package com.github.scalaspring.akka
 
 import akka.actor._
 import org.springframework.context.ConfigurableApplicationContext

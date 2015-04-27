@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring;
+package com.github.scalaspring.akka;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
  * libraries, etc. Please use the {@code ActorComponent} annotation to annotate your
  * classes instead if you're creating your own actors for use with Spring.
  *
- * @see com.github.lancearlaus.akka.spring.ActorComponent
+ * @see ActorComponent
  */
 @Bean
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)

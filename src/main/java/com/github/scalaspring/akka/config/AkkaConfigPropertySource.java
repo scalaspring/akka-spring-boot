@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring.config;
+package com.github.scalaspring.akka.config;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigValue;

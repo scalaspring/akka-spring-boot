@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring.config;
+package com.github.scalaspring.akka.config;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

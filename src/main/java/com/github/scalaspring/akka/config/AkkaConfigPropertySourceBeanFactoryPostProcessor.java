@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring.config;
+package com.github.scalaspring.akka.config;
 
 import com.typesafe.config.ConfigFactory;
 import org.apache.commons.logging.Log;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  *
  * Usage: Import the AkkaAutoConfiguration configuration to create an instance of this class via component scanning.
  *
- * @see com.github.lancearlaus.akka.spring.AkkaAutoConfiguration
+ * @see com.github.scalaspring.akka.AkkaAutoConfiguration
  */
 @Component
 public class AkkaConfigPropertySourceBeanFactoryPostProcessor implements BeanFactoryPostProcessor, ApplicationContextAware, EnvironmentAware {

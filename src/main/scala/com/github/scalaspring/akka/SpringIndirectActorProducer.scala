@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring
+package com.github.scalaspring.akka
 
 import akka.actor.{Actor, IndirectActorProducer}
 import org.springframework.context.ConfigurableApplicationContext
@@ -18,7 +18,7 @@ object SpringIndirectActorProducer {
   }
 }
 
-import com.github.lancearlaus.akka.spring.SpringIndirectActorProducer._
+import SpringIndirectActorProducer._
 
 class SpringIndirectActorProducer(clazz: Class[_ <: Actor], applicationContext: ConfigurableApplicationContext, beanName: String,  args: immutable.Seq[AnyRef]) extends IndirectActorProducer {
 

@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring
+package com.github.scalaspring.akka
 
 import java.beans.Introspector
 
@@ -7,7 +7,11 @@ import akka.actor._
 import scala.reflect.ClassTag
 
 /**
- * This trait should NOT be used directly. Please use the configuration and actor-specific extensions instead.
+ * This trait should NOT be used directly. Please use the configuration- ({@code ActorSystemConfiguration}) and
+ * actor-specific ({@code SpringActor}) extensions instead.
+ *
+ * @see ActorSystemConfiguration
+ * @see SpringActor
  */
 trait SpringActorRefFactory {
 
@@ -20,6 +24,7 @@ trait SpringActorRefFactory {
   /**
    * Creates a Spring-backed actor reference by type.
    *
+   * Looks up the Spring bean of the given type, which is expected to be an Actor.
    * This factory method satisfies most use cases and is appropriate when a single actor of a given type is defined.
    *
    * Example:
@@ -33,8 +38,9 @@ trait SpringActorRefFactory {
   def actorOf[T <: Actor: ClassTag]: ActorRef = requireFactory(factory.actorOf(SpringProps[T]))
 
   /**
-   * Creates a customized Spring-backed actor reference by type.
+   * Creates a Spring-backed actor reference by type with constructor arguments.
    *
+   * Looks up the Spring bean of the given type and constructor arguments (using Spring's {@code BeanFactory.getBean(class, args)}).
    * This factory method is typically used when the target actor needs to be customized per consumer during configuration.
    *
    * Example:

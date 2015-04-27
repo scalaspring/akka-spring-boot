@@ -1,8 +1,8 @@
-package com.github.lancearlaus.akka.spring.config
+package com.github.scalaspring.akka.config
 
 import java.net.URL
 
-import com.github.scalaspring.spring.test.TestContextManagement
+import com.github.scalaspring.scalatest.TestContextManagement
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.{FlatSpec, Matchers}
@@ -18,11 +18,13 @@ import org.springframework.test.context.ContextConfiguration
 )
 class AkkaConfigAutoConfigurationSpec extends FlatSpec with TestContextManagement with Matchers with StrictLogging {
 
-  @Autowired
-  val environment: ConfigurableEnvironment = null
+  import AkkaConfigAutoConfigurationSpec._
 
-  @Autowired
-  val config: Config = null
+  @Autowired val environment: ConfigurableEnvironment = null
+
+  @Autowired val config: Config = null
+
+  @Autowired val testUrl: URL = null
 
   val defaultConfig: Config = ConfigFactory.defaultReference
 
@@ -32,9 +34,6 @@ class AkkaConfigAutoConfigurationSpec extends FlatSpec with TestContextManagemen
   @Value("${java.vm.version}")
   val javaVmVersion: String = null
 
-  @Autowired
-  val testUrl: URL = null
-
   "System properties" should "be accessible" in {
     //logger.info(System.getProperties.keySet.toString)
     //logger.info(defaultConfig.entrySet().asScala.map(_.getKey).toSeq.sorted.toString)
@@ -43,7 +42,7 @@ class AkkaConfigAutoConfigurationSpec extends FlatSpec with TestContextManagemen
   }
 
   "Autowired dependency" should "be injected" in {
-    testUrl should not be null
+    testUrl shouldBe TEST_URL
   }
 
   "Spring configuration" should "override Akka default configuration" in {
@@ -65,13 +64,15 @@ class AkkaConfigAutoConfigurationSpec extends FlatSpec with TestContextManagemen
 
 object AkkaConfigAutoConfigurationSpec {
 
+  val TEST_URL = new URL("http://google.com")
+
   @Import(Array(classOf[AkkaConfigAutoConfiguration]))
   @PropertySource(Array("classpath:AkkaConfigAutoConfigurationSpec.properties"))
   @Configuration
   class Configuration {
 
     @Bean
-    def testUrl: URL = new URL("http://google.com")
+    def testUrl = TEST_URL
 
   }
 

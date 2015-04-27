@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring.config;
+package com.github.scalaspring.akka.config;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
@@ -11,8 +11,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
 
 import java.util.Map;
 
-import static com.github.lancearlaus.akka.spring.config.AkkaConfigPropertySourceAdapter.convertIndexedProperties;
-import static com.github.lancearlaus.akka.spring.config.AkkaConfigPropertySourceAdapter.getPropertyMap;
+import static com.github.scalaspring.akka.config.AkkaConfigPropertySourceAdapter.convertIndexedProperties;
+import static com.github.scalaspring.akka.config.AkkaConfigPropertySourceAdapter.getPropertyMap;
 
 /**
  * Links Spring environment (property sources) and Akka configuration (Config).
@@ -39,7 +39,7 @@ public class AkkaConfigAutoConfiguration {
      */
     @Bean
     public Config akkaConfig(ConfigurableApplicationContext applicationContext, ConfigurableEnvironment environment) {
-        final Map<String, Object> converted = convertIndexedProperties(getPropertyMap(environment));
+        final Map<String, Object> converted = AkkaConfigPropertySourceAdapter.convertIndexedProperties(AkkaConfigPropertySourceAdapter.getPropertyMap(environment));
         final Config defaultConfig = ConfigFactory.defaultReference(applicationContext.getClassLoader());
 
         return ConfigFactory.parseMap(converted).withFallback(defaultConfig);

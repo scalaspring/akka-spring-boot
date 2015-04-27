@@ -1,4 +1,4 @@
-package com.github.lancearlaus.akka.spring;
+package com.github.scalaspring.akka;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;

@@ -1,7 +1,7 @@
-package com.github.lancearlaus.akka.spring
+package com.github.scalaspring.akka
 
 import akka.actor.{ActorSystem, Deploy, Props}
-import com.github.lancearlaus.akka.spring.config.AkkaConfigAutoConfiguration
+import com.github.scalaspring.akka.config.AkkaConfigAutoConfiguration
 import com.typesafe.config.Config
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
