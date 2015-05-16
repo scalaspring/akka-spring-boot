@@ -9,6 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired
 trait ActorSystemConfiguration extends SpringActorRefFactory {
 
   @Autowired
-  override protected implicit val factory: ActorSystem = null
+  protected implicit val factory: ActorSystem = null
 
 }
