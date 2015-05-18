@@ -14,6 +14,7 @@ lazy val AkkaSpringBoot = (project in file(".")).
     scalaVersion        := "2.11.6",
     crossScalaVersions  := Seq("2.10.5"),
     javacOptions        := Seq("-source", "1.7", "-target", "1.7"),
+    scalacOptions       ++= Seq("-feature", "-deprecation"),
     resolvers           += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
     libraryDependencies ++= Seq(
       "com.typesafe.scala-logging" %% "scala-logging" % "3.+",
