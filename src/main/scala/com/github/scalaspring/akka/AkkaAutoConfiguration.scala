@@ -50,7 +50,7 @@ class AkkaAutoConfiguration(actorSystemName: String) extends SpringLogging {
    * detection to allow for explicit management of the actor system lifecycle via an {@code ActorSystemLifecycle} bean.
    *
    */
-  @Bean(destroyMethod = "") @ConditionalOnMissingBean(Array(classOf[ActorSystem]))
+  @Bean/*(destroyMethod = "")*/ @ConditionalOnMissingBean(Array(classOf[ActorSystem]))
   def actorSystem(config: Config): ActorSystem = {
     log.info(s"""Creating actor system "${actorSystemName}"""")
     ActorSystem(actorSystemName, Option(config), Option(applicationContext.getClassLoader), Option(executionContext))

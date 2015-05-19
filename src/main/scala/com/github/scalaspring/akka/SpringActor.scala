@@ -7,6 +7,6 @@ import akka.actor.{Actor, ActorContext}
  */
 trait SpringActor extends Actor with SpringActorRefFactory { this: Actor =>
 
-  override protected implicit val factory: ActorContext = context
+  protected implicit val factory: ActorContext = context
 
 }

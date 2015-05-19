@@ -5,15 +5,16 @@ val akkaVersion = "2.3.9"
 val springVersion = "4.1.6.RELEASE"
 val springBootVersion = "1.2.3.RELEASE"
 
-lazy val root = (project in file(".")).
+lazy val AkkaSpringBoot = (project in file(".")).
   settings(net.virtualvoid.sbt.graph.Plugin.graphSettings: _*).
   settings(
     organization        := "com.github.scalaspring",
     name                := "akka-spring-boot",
-    description         := "Easy-to-use Scala-friendly integration of Akka with Spring Boot.\nConvention over configuration and sensible automatic defaults get your project running quickly.",
+    description         := "Scala-based integration of Akka with Spring Boot.\nTwo-way Akka<->Spring configuration bindings and convention over configuration with sensible automatic defaults get your project running quickly.",
     scalaVersion        := "2.11.6",
     crossScalaVersions  := Seq("2.10.5"),
     javacOptions        := Seq("-source", "1.7", "-target", "1.7"),
+    scalacOptions       ++= Seq("-feature", "-deprecation"),
     resolvers           += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
     libraryDependencies ++= Seq(
       "com.typesafe.scala-logging" %% "scala-logging" % "3.+",
@@ -32,7 +33,7 @@ lazy val root = (project in file(".")).
     // Test dependencies
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "2.2.4",
-      "com.github.scalaspring" %% "scalatest-spring" % "0.2.0",
+      "com.github.scalaspring" %% "scalatest-spring" % "0.2.1",
       "org.springframework" % "spring-test" % springVersion,
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion
     ).map { _ % "test" },

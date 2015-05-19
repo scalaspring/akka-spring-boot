@@ -13,13 +13,7 @@ import scala.reflect.ClassTag
  * @see ActorSystemConfiguration
  * @see SpringActor
  */
-trait SpringActorRefFactory {
-
-  /**
-   * The factory used to create actor references.
-   * Note that this will either be the actor system itself or, in the case of child actors, the parent actor's context.
-   */
-  protected implicit val factory: ActorRefFactory
+private [akka] trait SpringActorRefFactory {
 
   /**
    * Creates a Spring-backed actor reference by type.
@@ -35,7 +29,8 @@ trait SpringActorRefFactory {
    * }}}
    *
    */
-  def actorOf[T <: Actor: ClassTag]: ActorRef = requireFactory(factory.actorOf(SpringProps[T]))
+  def actorOf[T <: Actor: ClassTag](implicit factory: ActorRefFactory): ActorRef =
+    requireFactory(factory.actorOf(SpringProps[T]))
 
   /**
    * Creates a Spring-backed actor reference by type with constructor arguments.
@@ -53,7 +48,8 @@ trait SpringActorRefFactory {
    * }}}
    *
    */
-  def actorOf[T <: Actor: ClassTag](args: Any*): ActorRef = requireFactory(factory.actorOf(SpringProps[T](args: _*)))
+  def actorOf[T <: Actor: ClassTag](args: Any*)(implicit factory: ActorRefFactory): ActorRef =
+    requireFactory(factory.actorOf(SpringProps[T](args: _*)))
 
   /**
    * Creates a Spring-backed actor reference by name with optional constructor arguments.
@@ -71,14 +67,17 @@ trait SpringActorRefFactory {
    * @param beanName name of the underlying bean
    * @param args optional constructor arguments
    */
-  def actorOf(beanName: String, args: Any*): ActorRef = requireFactory(factory.actorOf(SpringProps(beanName, args: _*)))
+  def actorOf(beanName: String, args: Any*)(implicit factory: ActorRefFactory): ActorRef =
+    requireFactory(factory.actorOf(SpringProps(beanName, args: _*)))
 
-  def actorOf(props: Props): ActorRef = requireFactory(factory.actorOf(props))
+  def actorOf(props: Props)(implicit factory: ActorRefFactory): ActorRef =
+    requireFactory(factory.actorOf(props))
 
-  def actorOf(props: Props, name: String): ActorRef = requireFactory(factory.actorOf(props, name))
+  def actorOf(props: Props, name: String)(implicit factory: ActorRefFactory): ActorRef =
+    requireFactory(factory.actorOf(props, name))
 
 
-  private def requireFactory(f: => ActorRef) = {
+  private def requireFactory(f: => ActorRef)(implicit factory: ActorRefFactory): ActorRef = {
     require(factory != null, "You cannot create actors from within a configuration constructor (using val or var). " +
       s"""Define a bean factory method annotated with the @Bean annotation instead. See the documentation for the ${classOf[SpringActorRefFactory].getSimpleName}.actorOf methods.""")
     f

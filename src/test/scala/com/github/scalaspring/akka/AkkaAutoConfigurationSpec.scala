@@ -26,7 +26,7 @@ class AkkaAutoConfigurationSpec extends FlatSpec with TestContextManagement with
   import KeyValueProtocol._
 
   import scala.concurrent.ExecutionContext.Implicits.global
-  implicit val timeout: Timeout = (1 seconds)
+  implicit val timeout: Timeout = (1.seconds)
 
   @Autowired val echoActor: ActorRef = null
   @Autowired val forwardingActor: ActorRef = null
