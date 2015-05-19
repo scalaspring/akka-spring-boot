@@ -1,16 +1,18 @@
 ### Akka Spring Boot Integration (akka-spring-boot)
 
-Easy-to-use Scala-friendly integration of Akka with Spring Boot.
-Convention over configuration and sensible automatic defaults get your project running quickly.
+Scala-based integration of Akka with Spring Boot.
+Two-way Akka<->Spring configuration bindings and convention over configuration with sensible automatic defaults get your project running quickly.
+
+The goal of this project is to produce bootable, Scala-based Spring Boot applications with minimal configuration.
 
 #### Key Benefits
 1. Full Spring dependency injection support
    * Autowire any dependency into your actors and leverage the full Spring ecosystem
-   * Use existing Spring components to enable gradual migration or to reuse perfectly suitable existing enterprise components
-   * Avoid the anti-pattern of using Scala implicits to implement dependency injection. Scala implicits are great, but they're often abused, IMHO, to pass dependencies all the way down the call stack and throughout an application resulting in tight coupling and less maintainable code.
+   * Use existing Spring components to enable gradual migration or reuse of suitable existing enterprise components
+   * Avoid the anti-patterns of using Scala implicits or abstract types to implement dependency injection. Scala implicits are excellent, but can be abused, IMHO, to pass dependencies around an application resulting in tight coupling and less maintainable code.
 2. Configure Akka via any Spring property source
    * Use your Spring Boot configuration (YAML, properties files, or any property source) to set Akka properties. Any property set via Spring is visible via Akka Config.
-   * Seamless two-way integration of Akka configuration and Spring property sources - any property defined in Akka configuration is accessible via Spring and vice versa.
+   * Seamless two-way integration of Akka and Spring configuration - any property defined in Akka configuration is accessible via Spring and vice versa.
 3. Pre-configured default actor system that's managed for you
    * No need to create and manage an actor system for your actors. A default actor system will be created when your application starts and terminated when your application is stopped.
 4. Easy creation of actor beans and actor references
@@ -21,7 +23,7 @@ Convention over configuration and sensible automatic defaults get your project r
 ##### build.sbt
 
 ````scala
-libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.1.1"
+libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.2.0"
 ````
 
 ##### Create an Actor and a Spring configuration
@@ -48,7 +50,8 @@ class EchoConfiguration extends ActorSystemConfiguration {
 ###### Notes on the code
 
 * Actors
-  * Annotate your actors with `@ActorComponent`, a [Spring meta-annotation](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-meta-annotations). This is simply a more readable way of marking your actors as Spring prototype beans.
+  * Annotate your actors with `@ActorComponent`, a [Spring meta-annotation](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html#beans-meta-annotations).
+    This is simply a more readable way of marking your actors as Spring prototype beans.
 * Configurations
   * Extend the `ActorSystemConfiguration` trait, which includes the helpful `actorOf()` methods
   * Import the `AkkaAutoConfiguration` configuration, which creates and manages the default actor system
@@ -129,3 +132,10 @@ class SomeActor extends Actor {
 }
 
 ````
+
+##### How is this project different than the spring-scala project from Pivotal Labs?
+
+The two projects have different purposes and approaches.
+The [scala-spring](https://github.com/spring-projects/spring-scala) project strives to make Spring accessible via functional configuration.
+This project uses a different approach, relying on standard Spring annotations, and more tightly integrates with Akka.
+Note that the scala-spring project is no longer maintained.
