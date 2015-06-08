@@ -7,9 +7,9 @@ The goal of this project is to produce bootable, Scala-based Spring Boot applica
 
 #### Key Benefits
 1. Full Spring dependency injection support
-   * Autowire any dependency into your actors and leverage the full Spring ecosystem
+   * Autowire any dependency into your actors and leverage the full Spring ecosystem where it makes sense
    * Use existing Spring components to enable gradual migration or reuse of suitable existing enterprise components
-   * Avoid the anti-patterns of using Scala implicits or abstract types to implement dependency injection. Scala implicits are excellent, but can be abused, IMHO, to pass dependencies around an application resulting in tight coupling and less maintainable code.
+   * Avoid the downsides of using Scala implicits or abstract types to implement dependency injection. While both are excellent features, they can also lead to tight coupling and less maintainable code.
 2. Configure Akka via any Spring property source
    * Use your Spring Boot configuration (YAML, properties files, or any property source) to set Akka properties. Any property set via Spring is visible via Akka Config.
    * Seamless two-way integration of Akka and Spring configuration - any property defined in Akka configuration is accessible via Spring and vice versa.
@@ -23,7 +23,7 @@ The goal of this project is to produce bootable, Scala-based Spring Boot applica
 ##### build.sbt
 
 ````scala
-libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.2.0"
+libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.2.1"
 ````
 
 ##### Create an Actor and a Spring configuration
