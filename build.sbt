@@ -1,11 +1,11 @@
 import sbt.Keys._
 
 // Common dependency versions
-val akkaVersion = "2.3.9"
+val akkaVersion = "2.3.11"
 val springVersion = "4.1.6.RELEASE"
-val springBootVersion = "1.2.3.RELEASE"
+val springBootVersion = "1.2.4.RELEASE"
 
-lazy val AkkaSpringBoot = (project in file(".")).
+lazy val `akka-spring-boot` = (project in file(".")).
   settings(net.virtualvoid.sbt.graph.Plugin.graphSettings: _*).
   settings(
     organization        := "com.github.scalaspring",
