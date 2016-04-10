@@ -1,9 +1,9 @@
 import sbt.Keys._
 
 // Common dependency versions
-val akkaVersion = "2.3.11"
-val springVersion = "4.1.6.RELEASE"
-val springBootVersion = "1.2.4.RELEASE"
+val akkaVersion = "2.4.2"
+val springVersion = "4.2.5.RELEASE"
+val springBootVersion = "1.3.3.RELEASE"
 
 lazy val `akka-spring-boot` = (project in file(".")).
   settings(net.virtualvoid.sbt.graph.Plugin.graphSettings: _*).
@@ -11,8 +11,8 @@ lazy val `akka-spring-boot` = (project in file(".")).
     organization        := "com.github.scalaspring",
     name                := "akka-spring-boot",
     description         := "Scala-based integration of Akka with Spring Boot.\nTwo-way Akka<->Spring configuration bindings and convention over configuration with sensible automatic defaults get your project running quickly.",
-    scalaVersion        := "2.11.6",
-    crossScalaVersions  := Seq("2.10.5"),
+    scalaVersion        := "2.11.8",
+    crossScalaVersions  := Seq("2.10.6"),
     javacOptions        := Seq("-source", "1.7", "-target", "1.7"),
     scalacOptions       ++= Seq("-feature", "-deprecation"),
     resolvers           += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
@@ -32,8 +32,8 @@ lazy val `akka-spring-boot` = (project in file(".")).
     ).map { _ % "runtime" },
     // Test dependencies
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "2.2.4",
-      "com.github.scalaspring" %% "scalatest-spring" % "0.2.1",
+      "org.scalatest" %% "scalatest" % "2.2.6",
+      "com.github.scalaspring" %% "scalatest-spring" % "0.3.1",
       "org.springframework" % "spring-test" % springVersion,
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion
     ).map { _ % "test" },

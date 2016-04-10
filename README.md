@@ -23,7 +23,7 @@ The goal of this project is to produce bootable, Scala-based Spring Boot applica
 ##### build.sbt
 
 ````scala
-libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.2.1"
+libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.3.1"
 ````
 
 ##### Create an Actor and a Spring configuration
@@ -56,6 +56,8 @@ class EchoConfiguration extends ActorSystemConfiguration {
   * Extend the `ActorSystemConfiguration` trait, which includes the helpful `actorOf()` methods
   * Import the `AkkaAutoConfiguration` configuration, which creates and manages the default actor system
   * Note that the `@ComponentScan` annotation will cause the EchoActor class to get picked up as a bean.
+* Configuration Properties
+  * Use the `akka.actorSystem.lifecycle.phase` configuration property to control when the underlying `ActorSystem` is terminated. The default value is -10 to ensure its termination after any default beans. 
 
 ##### Test the Configuration
 

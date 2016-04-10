@@ -1,6 +1,7 @@
 package com.github.scalaspring.akka
 
 import akka.actor.ActorSystem
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.SmartLifecycle
 
 
@@ -10,25 +11,33 @@ object ActorSystemLifecycle {
 
 /**
  * Shuts down the actor system when the application context is stopped.
+ *
+ * The lifecycle phase (default -10) can be adjusted by setting the akka.actorSystem.lifecycle.phase configuration
+ * property. Note that the phase MUST be less than any beans that depend on the actor system to ensure that the
+ * actor system is shut down after any dependent beans.
  */
 class ActorSystemLifecycle(actorSystem: ActorSystem) extends SmartLifecycle with SpringLogging {
 
   override def isAutoStartup: Boolean = true
 
-  override def getPhase: Int = 0
+  @Value("${akka.actorSystem.lifecycle.phase:-10}")
+  protected val phase: Int = -10
+  override def getPhase: Int = phase
 
-  override def isRunning: Boolean = !actorSystem.isTerminated
+  override def isRunning: Boolean = !actorSystem.whenTerminated.isCompleted
 
   // Do nothing since the actor system is already started once created
-  override def start(): Unit = { log.info(s"Starting actor system ${actorSystem.name}")}
+  override def start() = {}
 
   override def stop(callback: Runnable): Unit = {
-    if (!actorSystem.isTerminated) {
-      log.info(s"Shutting down actor system ${actorSystem.name}")
-      actorSystem.registerOnTermination({ log.info(s"Shut down complete for actor system ${actorSystem.name}"); callback.run })
-      actorSystem.shutdown()
-    } else {
+    if (actorSystem.whenTerminated.isCompleted) {
       log.warn(s"Actor system ${actorSystem.name} already terminated")
+      callback.run()
+    } else {
+      log.info(s"Terminating actor system ${actorSystem.name}")
+      actorSystem.registerOnTermination(callback)
+      actorSystem.registerOnTermination { log.info(s"Actor system ${actorSystem.name} terminated") }
+      actorSystem.terminate()
     }
   }
 
