@@ -23,7 +23,7 @@ The goal of this project is to produce bootable, Scala-based Spring Boot applica
 ##### build.sbt
 
 ````scala
-libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.3.1"
+libraryDependencies ++= "com.github.scalaspring" %% "akka-spring-boot" % "0.3.2-SNAPSHOT"
 ````
 
 ##### Create an Actor and a Spring configuration

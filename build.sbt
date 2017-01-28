@@ -1,9 +1,9 @@
 import sbt.Keys._
 
 // Common dependency versions
-val akkaVersion = "2.4.2"
-val springVersion = "4.2.5.RELEASE"
-val springBootVersion = "1.3.3.RELEASE"
+val akkaVersion = "2.4.16"
+val springVersion = "4.3.6.RELEASE"
+val springBootVersion = "1.4.4.RELEASE"
 
 lazy val `akka-spring-boot` = (project in file(".")).
   settings(net.virtualvoid.sbt.graph.Plugin.graphSettings: _*).
@@ -32,9 +32,10 @@ lazy val `akka-spring-boot` = (project in file(".")).
     ).map { _ % "runtime" },
     // Test dependencies
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "2.2.6",
+      "org.scalatest" %% "scalatest" % "3.0.1",
       "com.github.scalaspring" %% "scalatest-spring" % "0.3.1",
       "org.springframework" % "spring-test" % springVersion,
+      "org.springframework.boot" % "spring-boot-starter-test" % springBootVersion,
       "com.typesafe.akka" %% "akka-testkit" % akkaVersion
     ).map { _ % "test" },
     // Publishing settings
